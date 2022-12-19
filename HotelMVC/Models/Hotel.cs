@@ -8,6 +8,7 @@ namespace HotelMVC.Models
     public class Hotel
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         //public string HotelId { get; set; } = new Guid().ToString().Substring(7, 7);
         [Required(ErrorMessage = "Hotel name is required")]
@@ -27,17 +28,23 @@ namespace HotelMVC.Models
         public string EmailAddress { get; set; }
         [Required]
         public HotelRating Rating { get; set; }
-        //[ForeignKey("Id")]
-        //public Manager HotelManager { get; set; }
+        public Manager Manager { get; set; }
         public int ManagerId { get; set; }
-        public int AdminId { get; set; }
-        [ForeignKey("Id")]
+        //public int AdminId { get; set; }
+        //[ForeignKey("Id")]
         public ICollection<Admin> Admins { get; set; }
-        public int RoomId { get; set; }
-        [ForeignKey("Id")]
+        //public int RoomId { get; set; }
+        //[ForeignKey("Id")]
         public ICollection<Room> Rooms { get; set; }
-        public int CustomerId { get; set; }
-        [ForeignKey("Id")]
+        //public int CustomerId { get; set; }
+        //[ForeignKey("Id")]
         public ICollection<Customer> Customers { get; set; }
+
+        public Hotel()
+        {
+            Admins = new HashSet<Admin>();
+            Customers = new HashSet<Customer>();
+            Rooms = new HashSet<Room>();
+        }
     }
 }

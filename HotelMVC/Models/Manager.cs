@@ -11,5 +11,6 @@ namespace HotelMVC.Models
         //public string ManagerId { get; set; } = new Guid().ToString().Substring(3, 7);
         public string ManagerUserName { get; set; }
         public Hotel Hotel { get; set; }
+        public int HotelId { get; set; }
     }
 }

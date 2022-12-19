@@ -2,7 +2,7 @@
 
 namespace HotelMVC.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,6 @@ namespace HotelMVC.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ManagerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ManagerUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -31,8 +30,8 @@ namespace HotelMVC.Migrations
                 name: "Hotels",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    HotelId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     HotelName = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -49,8 +48,8 @@ namespace HotelMVC.Migrations
                 {
                     table.PrimaryKey("PK_Hotels", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Hotels_Managers_Id",
-                        column: x => x.Id,
+                        name: "FK_Hotels_Managers_ManagerId",
+                        column: x => x.ManagerId,
                         principalTable: "Managers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -112,7 +111,6 @@ namespace HotelMVC.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoomId = table.Column<int>(type: "int", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -144,6 +142,12 @@ namespace HotelMVC.Migrations
                 name: "IX_Customers_RoomId",
                 table: "Customers",
                 column: "RoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hotels_ManagerId",
+                table: "Hotels",
+                column: "ManagerId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

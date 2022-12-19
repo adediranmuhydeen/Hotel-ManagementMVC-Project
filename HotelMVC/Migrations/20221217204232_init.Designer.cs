@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221217183601_initial")]
-    partial class initial
+    [Migration("20221217204232_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,6 +24,7 @@ namespace HotelMVC.Migrations
             modelBuilder.Entity("HotelMVC.Models.Admin", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("AdminId")
@@ -67,10 +68,8 @@ namespace HotelMVC.Migrations
             modelBuilder.Entity("HotelMVC.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("CustomerId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -115,7 +114,9 @@ namespace HotelMVC.Migrations
             modelBuilder.Entity("HotelMVC.Models.Hotel", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -133,9 +134,6 @@ namespace HotelMVC.Migrations
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HotelName")
@@ -162,6 +160,9 @@ namespace HotelMVC.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ManagerId")
+                        .IsUnique();
+
                     b.ToTable("Hotels");
                 });
 
@@ -182,9 +183,6 @@ namespace HotelMVC.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ManagerId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ManagerUserName")
@@ -212,6 +210,7 @@ namespace HotelMVC.Migrations
             modelBuilder.Entity("HotelMVC.Models.Room", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("CheckInTime")
@@ -273,13 +272,11 @@ namespace HotelMVC.Migrations
 
             modelBuilder.Entity("HotelMVC.Models.Hotel", b =>
                 {
-                    b.HasOne("HotelMVC.Models.Manager", "Manager")
+                    b.HasOne("HotelMVC.Models.Manager", null)
                         .WithOne("Hotel")
-                        .HasForeignKey("HotelMVC.Models.Hotel", "Id")
+                        .HasForeignKey("HotelMVC.Models.Hotel", "ManagerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Manager");
                 });
 
             modelBuilder.Entity("HotelMVC.Models.Room", b =>
@@ -304,8 +301,7 @@ namespace HotelMVC.Migrations
 
             modelBuilder.Entity("HotelMVC.Models.Manager", b =>
                 {
-                    b.Navigation("Hotel")
-                        .IsRequired();
+                    b.Navigation("Hotel");
                 });
 #pragma warning restore 612, 618
         }

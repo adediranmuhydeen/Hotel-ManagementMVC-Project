@@ -22,6 +22,7 @@ namespace HotelMVC.Migrations
             modelBuilder.Entity("HotelMVC.Models.Admin", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("AdminId")
@@ -65,10 +66,8 @@ namespace HotelMVC.Migrations
             modelBuilder.Entity("HotelMVC.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<string>("CustomerId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -209,6 +208,7 @@ namespace HotelMVC.Migrations
             modelBuilder.Entity("HotelMVC.Models.Room", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("CheckInTime")

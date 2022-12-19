@@ -1,4 +1,5 @@
-﻿using HotelMVC.Models;
+﻿using HotelMVC.Configuration;
+using HotelMVC.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelMVC.Data
@@ -9,19 +10,24 @@ namespace HotelMVC.Data
         {
 
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Hotel_Manager>().HasKey(hm => new
-        //    {
-        //        hm.HotelId,
-        //        hm.ManagerId
-        //    });
-        //    modelBuilder.Entity<Hotel>().HasOne(h => h.Managers).WithOne().HasForeignKey<Manager>(m => m.ManagerId);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new HotelConfiguration());
+            modelBuilder.ApplyConfiguration(new ManagerConfiguration());
+            modelBuilder.ApplyConfiguration(new RoomConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new AdminConfiguration());
+            //modelBuilder.Entity<Hotel_Manager>().HasKey(hm => new
+            //{
+            //    hm.HotelId,
+            //    hm.ManagerId
+            //});
+            //modelBuilder.Entity<Hotel>().HasOne(h => h.Managers).WithOne().HasForeignKey<Manager>(m => m.ManagerId);
 
-        //    modelBuilder.Entity<Manager>().HasOne(m => m.Hotel).WithOne().HasForeignKey<Hotel>(h => h.HotelId);
+            //modelBuilder.Entity<Manager>().HasOne(m => m.Hotel).WithOne().HasForeignKey<Hotel>(h => h.HotelId);
 
-        //    base.OnModelCreating(modelBuilder);
-        //}
+            //base.OnModelCreating(modelBuilder);
+        }
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Manager> Managers { get; set; }

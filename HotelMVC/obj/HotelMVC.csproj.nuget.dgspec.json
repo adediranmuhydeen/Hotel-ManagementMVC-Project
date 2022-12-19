@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Decagon\\OneDrive\\Documents\\.Net\\HotelMVC\\HotelMVC\\HotelMVC.csproj": {}
+    "C:\\Users\\Decagon\\Downloads\\Hotel-ManagementMVC-Project\\Hotel-ManagementMVC-Project\\HotelMVC\\HotelMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Decagon\\OneDrive\\Documents\\.Net\\HotelMVC\\HotelMVC\\HotelMVC.csproj": {
+    "C:\\Users\\Decagon\\Downloads\\Hotel-ManagementMVC-Project\\Hotel-ManagementMVC-Project\\HotelMVC\\HotelMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Decagon\\OneDrive\\Documents\\.Net\\HotelMVC\\HotelMVC\\HotelMVC.csproj",
+        "projectUniqueName": "C:\\Users\\Decagon\\Downloads\\Hotel-ManagementMVC-Project\\Hotel-ManagementMVC-Project\\HotelMVC\\HotelMVC.csproj",
         "projectName": "HotelMVC",
-        "projectPath": "C:\\Users\\Decagon\\OneDrive\\Documents\\.Net\\HotelMVC\\HotelMVC\\HotelMVC.csproj",
+        "projectPath": "C:\\Users\\Decagon\\Downloads\\Hotel-ManagementMVC-Project\\Hotel-ManagementMVC-Project\\HotelMVC\\HotelMVC.csproj",
         "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Decagon\\OneDrive\\Documents\\.Net\\HotelMVC\\HotelMVC\\obj\\",
+        "outputPath": "C:\\Users\\Decagon\\Downloads\\Hotel-ManagementMVC-Project\\Hotel-ManagementMVC-Project\\HotelMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
